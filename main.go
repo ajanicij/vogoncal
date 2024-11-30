@@ -37,6 +37,7 @@ func run() error {
 		fmt.Fprintf(flag.CommandLine.Output(),
 			"\n%s tool. Developed by Aleksandar Janicijevic\n", os.Args[0])
 		fmt.Fprintf(flag.CommandLine.Output(), "Copyright 2024\n")
+		fmt.Fprintf(flag.CommandLine.Output(), "Source code: [vogoncal](https://github.com/ajanicij/vogoncal)")
 		fmt.Fprintln(flag.CommandLine.Output(), "Usage information:")
 		flag.PrintDefaults()
 	}
