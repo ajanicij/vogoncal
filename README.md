@@ -1,0 +1,2 @@
+# vogoncal
+Simple calendar utility
