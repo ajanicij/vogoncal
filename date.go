@@ -139,7 +139,10 @@ func ProcessFile(path string, d Date, days int) ([]Entry, error) {
 
 		dateFilter, err := ParseDateFilter(datestr)
 		if err != nil {
-			return nil, err
+			// What is supposed to be a date line (e.g. "2025-11-10") is
+			// not formatted properly. Continue parsing the file.
+			fmt.Fprintf(os.Stderr, "Error parsing line %s for date: %s\n", datestr, err)
+			continue
 		}
 
 		eof := false

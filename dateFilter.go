@@ -23,6 +23,7 @@ func NewDateFilter(year, month, day int) DateFilter {
 }
 
 func ParseDateFilter(pattern string) (DateFilter, error) {
+	pattern = strings.TrimRight(pattern, " ")
 	list := strings.Split(pattern, "-")
 	var filter DateFilter
 	if len(list) != 3 {
@@ -36,7 +37,7 @@ func ParseDateFilter(pattern string) (DateFilter, error) {
 	} else {
 		yearVal, err := strconv.ParseInt(patternYear, 10, 64)
 		if err != nil {
-			return filter, fmt.Errorf("Error parsing year: %s", err.Error)
+			return filter, fmt.Errorf("Error parsing year `%s': %s", patternYear, err.Error)
 		}
 		filter.DatePattern.Year = int(yearVal)
 	}
@@ -48,7 +49,7 @@ func ParseDateFilter(pattern string) (DateFilter, error) {
 	} else {
 		monthVal, err := strconv.ParseInt(patternMonth, 10, 64)
 		if err != nil {
-			return filter, fmt.Errorf("Error parsing month: %s", err.Error)
+			return filter, fmt.Errorf("Error parsing month `%s': %s", patternMonth, err.Error)
 		}
 		filter.DatePattern.Month = int(monthVal)
 	}
@@ -60,7 +61,7 @@ func ParseDateFilter(pattern string) (DateFilter, error) {
 	} else {
 		dayVal, err := strconv.ParseInt(patternDay, 10, 64)
 		if err != nil {
-			return filter, fmt.Errorf("Error parsing day: %s", err.Error)
+			return filter, fmt.Errorf("Error parsing day `%s': %s", patternDay, err)
 		}
 		filter.DatePattern.Day = int(dayVal)
 	}
